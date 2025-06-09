@@ -1,0 +1,316 @@
+/* App.css - VERSÃO FINAL PARA DUAS COLUNAS */
+
+/* Estilos globais/root (geralmente de index.css ou main.css) */
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87); 
+    background-color: #020e5d; 
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos para links */
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+a:hover {
+    color: #535bf2;
+}
+
+/* Estilos para o BODY - ESSENCIAL PARA O LAYOUT */
+body {
+    margin: 0;
+    display: flex; /* Habilita Flexbox no body */
+    justify-content: center; /* Centraliza o container horizontalmente */
+    align-items: flex-start; /* Alinha o conteúdo ao topo (para não centralizar verticalmente todo o app) */
+    min-width: 320px;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+
+    background-image: url(./assets/img/1cadastro.avif); /* VERIFIQUE O CAMINHO! */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; 
+
+    color: #90103f; /* Cor do texto no body, se não sobrescrita */
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilos globais para H1 e Button */
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #8a065e;
+    color: white; /* Garante texto branco em botões globais */
+    cursor: pointer;
+    transition: border-color 0.25s, background-color 0.25s;
+}
+button:hover {
+    border-color: #646cff;
+    background-color: #a40775;
+}
+button:focus, button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #8a065e;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9; 
+        color: #333; 
+    }
+}
+
+
+/* --- ESTILOS ESPECÍFICOS DO SEU APP (DENTRO DO .container) --- */
+
+.container {
+    max-width: 1200px; /* Largura máxima para o conteúdo principal */
+    width: 95%; /* Ocupa 95% da largura da tela */
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #ffffff; /* Fundo branco para o container do app */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    color: #333; /* Cor do texto dentro do container */
+
+    /* Novo: O container principal também será um flexbox para organizar o conteúdo verticalmente */
+    display: flex;
+    flex-direction: column; /* Organiza os filhos (H1, form-group, hr, list-group) em coluna */
+    align-items: center; /* Centraliza horizontalmente os filhos */
+}
+
+/* Títulos dentro do container */
+.container h1 { 
+    color: #007bff;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    width: 100%; /* Garante que o H1 ocupe a largura total */
+}
+
+.container h2 { 
+    color: #007bff;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Mensagens de feedback */
+.mensagem {
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 15px auto;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    max-width: 80%;
+}
+
+.mensagem.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.mensagem.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CLASSES PARA LAYOUT LADO A LADO --- */
+/* Estes containers .form-group e .list-group são os que aplicarão o flexbox para as COLUNAS */
+.form-group, .list-group {
+    display: flex; /* ATIVA O FLEXBOX */
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha se não houver espaço */
+    justify-content: center; /* Centraliza os itens horizontalmente quando há espaço sobrando */
+    gap: 40px; /* Aumenta o espaçamento entre as "colunas" */
+    margin-bottom: 40px;
+    width: 100%; /* Ocupa a largura total do container pai */
+    max-width: 1100px; /* Limita a largura para que não fiquem excessivamente largos */
+}
+
+/* Formulários de cadastro (aluno e professor) */
+.aluno-form, .professor-form {
+    background-color: #f8f8f8;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    flex: 1 1 48%; /* flex-grow: 1, flex-shrink: 1, flex-basis: 48% */
+                     /* Isso fará com que cada formulário tente ocupar 48% do espaço */
+    min-width: 450px; /* Garante que os formulários tenham PELO MENOS 450px de largura */
+    max-width: 550px; /* Limita a largura máxima para não ficarem muito grandes em telas muito largas */
+    text-align: left;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+}
+
+.aluno-form div, .professor-form div { margin-bottom: 18px; }
+.aluno-form label, .professor-form label {
+    display: block; margin-bottom: 8px; font-weight: bold; color: #555;
+}
+
+/* Ajuste da cor de fundo dos inputs para lilás claro */
+.aluno-form input[type="text"], .aluno-form input[type="email"],
+.professor-form input[type="text"], .professor-form input[type="email"] {
+    width: calc(100% - 24px); 
+    padding: 12px; 
+    border: 1px solid #ddd;
+    border-radius: 6px; 
+    font-size: 1em; 
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    
+    background-color: #f0e6fa; /* Lilás bem claro */
+    color: #333; /* Cor do texto dentro do input para legibilidade */
+}
+/* Foco nos inputs */
+.aluno-form input[type="text"]:focus, .aluno-form input[type="email"]:focus,
+.professor-form input[type="text"]:focus, .professor-form input[type="email"]:focus {
+    outline: none; 
+    border-color: #8A2BE2; /* Lilás mais vibrante no foco */
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.25); /* Sombra com lilás */
+}
+
+
+/* Botões de cadastro (verde) */
+.aluno-form button[type="submit"], .professor-form button[type="submit"] {
+    background-color: #28a745; color: white; padding: 12px 25px; border: none;
+    border-radius: 6px; font-size: 1.1em; cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto; display: block; margin: 20px auto 0 auto;
+}
+.aluno-form button[type="submit"]:hover, .professor-form button[type="submit"]:hover {
+    background-color: #218838; transform: translateY(-2px);
+}
+
+/* Listas de alunos e professores */
+.lista-alunos, .lista-professores {
+    flex: 1 1 48%; /* flex-grow: 1, flex-shrink: 1, flex-basis: 48% */
+    min-width: 450px; /* Garante que as listas tenham PELO MENOS 450px de largura */
+    max-width: 550px; /* Limita a largura máxima */
+    margin-top: 0;
+    box-sizing: border-box;
+}
+.lista-alunos ul, .lista-professores ul { list-style: none; padding: 0; }
+.lista-alunos li, .lista-professores li {
+    background-color: #e9ecef; margin-bottom: 15px; padding: 15px 20px;
+    border-radius: 8px; display: flex; justify-content: space-between;
+    align-items: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+.lista-alunos li:last-child, .lista-professores li:last-child { margin-bottom: 0; }
+.lista-alunos li:hover, .lista-professores li:hover { transform: translateY(-3px); }
+.lista-alunos li div, .lista-professores li div {
+    text-align: left; flex-grow: 1; margin-right: 15px;
+}
+.lista-alunos li strong, .lista-professores li strong {
+    color: #007bff; font-size: 1.1em; display: block; margin-bottom: 5px;
+}
+.lista-alunos li em, .lista-professores li em {
+    color: #666; font-style: normal; font-size: 0.9em;
+}
+
+/* Botão de deletar (vermelho) */
+.botao-deletar {
+    background-color: #dc3545; color: white; padding: 8px 15px; border: none;
+    border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.9em; flex-shrink: 0;
+}
+.botao-deletar:hover { background-color: #c82333; transform: translateY(-2px); }
+
+/* Mensagem de "nenhum cadastrado" */
+.lista-alunos p, .lista-professores p {
+    color: #666; font-style: italic; margin-top: 20px; text-align: center;
+}
+
+/* Linha divisória */
+hr {
+    border: 0; height: 1px; background-color: #ccc; margin: 40px auto; max-width: 80%;
+    width: 100%; /* Garante que a linha ocupe a largura total no container flex */
+}
+
+/* --- Media Queries para Responsividade --- */
+/* Em telas menores que 980px, os itens se empilham para melhor visualização */
+@media (max-width: 980px) { /* Ajustei o breakpoint para 980px para empilhar mais tarde */
+    .form-group, .list-group {
+        flex-direction: column; /* Empilha os itens */
+        align-items: center; /* Centraliza os itens quando empilhados */
+        gap: 40px; /* Espaçamento entre os itens empilhados */
+    }
+
+    .aluno-form, .professor-form,
+    .lista-alunos, .lista-professores {
+        width: 90%; /* Ocupa 90% da largura da tela */
+        max-width: 550px; /* Mantém a largura máxima para não ficar muito largo */
+        min-width: unset; /* Remove o min-width para maior flexibilidade em telas pequenas */
+    }
+}
+
+/* Outras media queries para telas ainda menores */
+@media (max-width: 768px) {
+    .container { margin: 30px 20px; padding: 20px; }
+    .container h1 { font-size: 2em; }
+    .container h2 { font-size: 1.6em; }
+    .mensagem { padding: 10px 15px; font-size: 0.9em; }
+    .aluno-form input[type="text"], .aluno-form input[type="email"],
+    .professor-form input[type="text"], .professor-form input[type="email"] { padding: 10px; }
+    .aluno-form button[type="submit"], .professor-form button[type="submit"] {
+        padding: 10px 20px; font-size: 1em;
+    }
+    .lista-alunos li, .lista-professores li { padding: 12px 15px; }
+}
+
+@media (max-width: 600px) {
+    .container { margin: 20px 15px; padding: 15px; }
+    .container h1 { font-size: 1.8em; }
+    .container h2 { font-size: 1.4em; }
+    .aluno-form button[type="submit"], .professor-form button[type="submit"] { width: 100%; }
+    .lista-alunos li, .lista-professores li {
+        flex-direction: column; align-items: flex-start; gap: 10px;
+    }
+    .lista-alunos li div, .lista-professores li div { margin-right: 0; }
+    .botao-deletar { width: 100%; }
+}
+
+@media (max-width: 375px) {
+    .container { padding: 10px; margin: 15px 10px; }
+    .container h1 { font-size: 1.6em; }
+    .container h2 { font-size: 1.3em; }
+}
